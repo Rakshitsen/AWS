@@ -1,4 +1,4 @@
-1️⃣ What is EC2?
+1 What is EC2?
 Amazon EC2 is a cloud based compute service that allow users to launch virtual machines(instance) with scalable CPU, Memory, and network configurations. It support auto scaling, different instance types and on-demanding provising, making it ideal for 
 ✅ Web servers (hosting websites, APIs)
 ✅ High-performance computing (big data, AI/ML)
@@ -7,7 +7,7 @@ Amazon EC2 is a cloud based compute service that allow users to launch virtual m
 
 
 
-2️⃣ EC2 Instance Types & Familiess
+2 EC2 Instance Types & Familiess
 EC2 provides different instance families, optimized for specific workloads:
 T-series(General Purpose) : T3, T4g – Balanced for most apps
 
@@ -23,7 +23,7 @@ P & G-Series (GPU Instances): P4, G5 – For deep learning and video rendering
 
 
 
-3️⃣ What is a Key Pair? (SSH Authentication in AWS)
+3 What is a Key Pair? (SSH Authentication in AWS)
 A Key Pair in AWS consists of a public and a private key used for securely accessing EC2 instances via SSH.
 
 AWS stores the public key on the instance.
@@ -49,7 +49,7 @@ Outbound rules define what traffic the instance can send out.
 
 
 
-5️⃣ What is an IAM Role? (Temporary Access in AWS)
+5 What is an IAM Role? (Temporary Access in AWS)
 IAM (Identity & Access Management) Roles grant temporary permissions to AWS services or users.
 
 Unlike IAM Users (which have permanent credentials), IAM Roles use temporary security tokens.
