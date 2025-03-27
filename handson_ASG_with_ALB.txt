@@ -1,0 +1,55 @@
+Step 1: Hands-on - Deploy an Auto Scaling Group (ASG) with an Application Load Balancer (ALB)
+📌 What We’ll Do
+1️⃣ Create an ALB (to distribute traffic)
+2️⃣ Set up an Auto Scaling Group (to handle scaling)
+3️⃣ Attach the ALB to ASG (for automatic traffic management)
+4️⃣ Test Auto Scaling by increasing traffic
+
+
+
+
+
+
+🚀 Step-by-Step Guide
+🛠 1. Create an Application Load Balancer (ALB)
+Go to AWS Console → EC2 → Load Balancers
+
+Click "Create Load Balancer"
+
+Choose Application Load Balancer (ALB)
+
+Set Load Balancer Name (e.g., MyALB)
+
+Select Internet-facing (for public traffic)
+
+Select VPC & at least 2 subnets (for high availability)
+
+Create a new Target Group (or use an existing one)
+
+Register at least one instance to test ALB
+
+🛠 2. Create an Auto Scaling Group (ASG)
+Go to AWS Console → EC2 → Auto Scaling Groups
+
+Click "Create Auto Scaling Group"
+
+Name your ASG (e.g., MyASG)
+
+Choose a Launch Template (or create one)
+
+Set Min: 1, Desired: 2, Max: 5 (scalable range)
+
+Attach the ALB Target Group (so ASG instances register automatically)
+
+Set Scaling Policies
+
+Scale Out: Add instance if CPU > 70%
+
+Scale In: Remove instance if CPU < 30%
+
+🛠 3. Test Auto Scaling
+Send traffic to ALB URL
+
+Increase load using Apache Benchmark (ab) or a simple script
+
+Observe new instances launching automatically!
