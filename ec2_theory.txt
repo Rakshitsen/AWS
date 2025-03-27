@@ -1,0 +1,99 @@
+1️⃣ What is EC2?
+Amazon EC2 is a cloud based compute service that allow users to launch virtual machines(instance) with scalable CPU, Memory, and network configurations. It support auto scaling, different instance types and on-demanding provising, making it ideal for 
+✅ Web servers (hosting websites, APIs)
+✅ High-performance computing (big data, AI/ML)
+✅ Video processing and gaming servers
+✅ Running enterprise applications
+
+
+
+2️⃣ EC2 Instance Types & Familiess
+EC2 provides different instance families, optimized for specific workloads:
+T-series(General Purpose) : T3, T4g – Balanced for most apps
+
+M-Series (Balanced Compute & Memory): M5, M6g – Good for databases, app servers
+
+C-Series (Compute Optimized): C5, C6g – Best for CPU-heavy tasks (AI, ML, batch processing)
+
+R-Series (Memory Optimized): R5, R6g – Used for in-memory databases
+
+I-Series (Storage Optimized): I3, I4i – For high-speed SSD storage
+
+P & G-Series (GPU Instances): P4, G5 – For deep learning and video rendering
+
+
+
+3️⃣ What is a Key Pair? (SSH Authentication in AWS)
+A Key Pair in AWS consists of a public and a private key used for securely accessing EC2 instances via SSH.
+
+AWS stores the public key on the instance.
+
+The user downloads the private key (.pem file), which acts like a "key" to unlock access.
+💡 Analogy: Think of public key = lock, and private key = key that opens it
+
+
+
+
+
+4 What is a Security Group? (Firewall for EC2 Instances)
+A Security Group is an instance-level firewall that controls inbound & outbound traffic.
+
+Inbound rules define what traffic can enter the instance (e.g., allow SSH, HTTP).
+
+Outbound rules define what traffic the instance can send out.
+💡 Security Groups are "deny-all by default," meaning you must explicitly allow traffic.
+
+
+
+
+
+
+
+5️⃣ What is an IAM Role? (Temporary Access in AWS)
+IAM (Identity & Access Management) Roles grant temporary permissions to AWS services or users.
+
+Unlike IAM Users (which have permanent credentials), IAM Roles use temporary security tokens.
+
+Example: A Lambda function can assume an IAM Role to read from an S3 bucket, instead of storing permanent credentials.
+💡 Access can be time-limited and controlled using session policies.
+
+
+
+
+6 What is an Elastic IP? (Permanent Public IP for EC2)
+An Elastic IP (EIP) is a static public IPv4 address that stays attached to your AWS account until released.
+
+Unlike a regular public IP (which changes when an instance stops/restarts), an Elastic IP remains the same even if the instance is stopped or moved.
+
+Downside: If an EIP is not attached to a running instance, AWS charges you for it.
+
+
+
+7 Private vs. Public IPs in EC2
+Private IP – Used for internal AWS communication (e.g., between two EC2 instances in the same VPC).
+
+Public IP – Used to access instances from the internet (dynamic and changes if the instance is stopped/restarted).
+
+Elastic IP – A permanent public IP assigned manually.
+
+💡 Best Practice: Use Private IPs whenever possible to reduce costs and security risks.
+
+
+
+
+
+
+
+8 🔹 What is Auto Scaling?
+Auto Scaling automatically adjusts the number of EC2 instances based on traffic.
+
+If traffic increases, it adds instances; if traffic decreases, it removes instances.
+
+Why? → Saves cost + ensures high availability.
+
+🔹 What is a Load Balancer?
+AWS Load Balancer (ALB/NLB) distributes traffic evenly across multiple EC2 instances.
+
+It ensures that no single instance gets overloaded.
+
+Works with Auto Scaling to handle traffic spikes smoothly.
