@@ -53,3 +53,86 @@ Send traffic to ALB URL
 Increase load using Apache Benchmark (ab) or a simple script
 
 Observe new instances launching automatically!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+User data script for Launch template
+
+
+
+
+#!/bin/bash
+# Update package lists and install necessary packages
+apt update -y
+apt install -y nginx unzip curl
+
+# Enable and start Nginx
+systemctl enable nginx
+systemctl start nginx
+
+# Install AWS CLI (latest version)
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Remove any existing HTML files in /var/www/html
+rm -rf /var/www/html/*
+
+# Sync website files from S3 bucket
+aws s3 sync s3://my-nginx-content-bucket /var/www/html
+
+# Set correct permissions
+chown -R www-data:www-data /var/www/html
+chmod -R 755 /var/www/html
+
+# Update Nginx configuration
+cat <<EOF > /etc/nginx/sites-available/default
+server {
+    listen 80;
+    server_name _;
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+# Restart Nginx to apply changes
+systemctl restart nginx
+
+
+
+
+
+
+
+Ways to Generate Load on Your EC2 Instances
+1️⃣ Use ab (Apache Benchmark) Tool
+Run this command from any Linux-based system (including another EC2 instance or your local machine with WSL/Mac/Linux):
+
+bash
+Copy
+Edit
+ab -n 10000 -c 100 http://<ALB-DNS-Name>/
+🔹 -n 10000: Total 10,000 requests
+🔹 -c 100: 100 concurrent requests
