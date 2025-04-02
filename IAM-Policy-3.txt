@@ -1,0 +1,32 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "s3:ListBucket",
+          "s3:GetObject"
+        ],
+        "Resource": [
+          "arn:aws:s3:::company-public-data",
+          "arn:aws:s3:::company-public-data/*"
+        ],
+        "Condition": {
+          "IpAddress": {
+            "aws:SourceIp": "223.185.14.96/32"  //this is my IP address using where is my IP
+          },
+          "DateGreaterThan": {
+            "aws:CurrentTime": "2025-04-02T03:30:00Z"
+          },
+          "DateLessThan": {
+            "aws:CurrentTime": "2025-04-02T11:30:00Z"
+          }
+        }
+      },
+      {
+             "Effect":"Allow",
+             "Action": "s3:ListAllMyBuckets",
+             "Resource":"*"
+          }
+     ] 
+  }

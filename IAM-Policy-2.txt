@@ -1,0 +1,81 @@
+Create a Restricted S3 Access Setup
+This challenge will test your understanding of IAM users, groups, policies, and roles in a practical scenario.
+Task:
+Set up a system where different entities have different levels of access to two S3 buckets.
+Requirements:
+
+Create two S3 buckets: "company-public-data" and "company-confidential"
+Create these access patterns:
+
+An IAM user who can read both buckets but write to neither
+An IAM group whose members can read and write to "company-public-data" only
+An EC2 role that can read "company-public-data" but has no access to "company-confidential"
+===========================================================
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect":"Allow",
+            "Action": "s3:ListBucket",
+            "Resource":[
+                "arn:aws:s3:::company-confidential2025",
+                "arn:aws:s3:::company-confidential2025 /*",
+                "arn:aws:s3:::company-public-data2025",
+                "arn:aws:s3:::company-public-data2025/*"
+            ]
+        },
+        {
+           "Effect":"Allow",
+           "Action": "s3:ListAllMyBuckets",
+           "Resource":"*"
+ 
+        }
+    ]
+}
+
+=======================================================================
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::company-public-data2025",
+                "arn:aws:s3:::company-public-data2025/*"
+            ]
+        },
+        {
+           "Effect":"Allow",
+           "Action": "s3:ListAllMyBuckets",
+           "Resource":"*"
+        }
+    ]
+}
+=============================================================================
+{
+   "Version": "2012-10-17",
+   "Statement":[
+    {
+        "Effect":"Allow",
+        "Action":[
+            "s3:ListBucket",
+            "s3:GetObject"
+        ],
+         "Resource": [
+                "arn:aws:s3:::company-public-data2025",
+                "arn:aws:s3:::company-public-data2025/*"
+            ]
+    },
+    {
+           "Effect":"Allow",
+           "Action": "s3:ListAllMyBuckets",
+           "Resource":"*"
+        }
+   ] 
+}
