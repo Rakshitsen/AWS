@@ -1,0 +1,33 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          // Allow start, stop, and reboot ONLY on the specific EC2 instance
+          "Sid": "AllowSpecificInstanceActions",
+          "Effect": "Allow",
+          "Action": [
+              "ec2:RebootInstances",
+              "ec2:StartInstances",
+              "ec2:StopInstances"
+          ],
+          "Resource": "arn:aws:ec2:<region>:<rootaccount>:instance/<Instance-ID>"
+      },
+      {
+          // Allow describing all EC2 instances so user can view them in the console
+          "Sid": "AllowDescribeInstances",
+          "Effect": "Allow",
+          "Action": "ec2:DescribeInstances",
+          "Resource": "*"
+      },
+      {
+          // Allow EC2 Instance Connect (browser-based SSH) ONLY for the specific instance
+          "Sid": "AllowEC2InstanceConnect",
+          "Effect": "Allow",
+          "Action": [
+              "ec2-instance-connect:SendSSHPublicKey",
+              "ec2-instance-connect:SendSerialConsoleSSHPublicKey"
+          ],
+          "Resource": "arn:aws:ec2:<region>:<rootaccount>:instance/<Instance-ID>"
+      }
+  ]
+}
