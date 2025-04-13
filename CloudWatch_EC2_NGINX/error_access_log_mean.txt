@@ -1,0 +1,99 @@
+**access.log:**  
+This log keeps a record of every request that comes to the NGINX server:
+
+- Where it came from (IP address)  
+- When it came (timestamp)  
+- What was requested (GET/POST, URL)  
+- What was returned (status code like 200/404/500, etc.)  
+- How long it took (response time)
+192.168.1.1 - - [14/Apr/2025:11:03:21 +0000] "GET /index.html HTTP/1.1" 200 1024
+
+
+error.log:
+this show server errors:
+
+File not found
+
+Permission denied
+
+Server crash
+
+Syntax error in config
+
+[error] 1234#0: *1 open() "/usr/share/nginx/html/contact.html" failed (2: No such file or directory)
+
+
+
+Where are these logs located?
+Mostly, you'll find them at:
+
+access.log = /var/log/nginx/access.log
+
+error.log = /var/log/nginx/error.log
+
+If you’ve provided a custom directory like /nginx/access-log, then that was likely part of the CloudWatch configuration — the log path was customized specifically for log collection purposes.
+
+
+
+
+**3. How will these logs be useful in the future?**
+
+**Scenario 1: Website is slow**  
+Check `access.log` — is some IP spamming the server?  
+Is there too much load on a particular page?
+
+**Scenario 2: User says "Page not working"**  
+Look into `error.log` — is a file missing?  
+Could it be a permission issue?
+
+**Scenario 3: Scaling test**  
+A sudden spike in traffic visible in `access.log`?  
+A CloudWatch alarm might be about to trigger.
+
+**Scenario 4: Suspected hacker attack**  
+Are there repeated suspicious requests?  
+You can trace the IP in `access.log`.  
+404 spam or brute force attempts might also be visible.
+
+
+
+
+Examples:
+
+
+10.0.201.253 - - [13/Apr/2025:21:18:52 +0000] "GET / HTTP/1.1" 200 28043 "-" "ELB-HealthChecker/2.0" "-"
+
+
+IP: 10.0.201.253 → internal IP (probably from your Application Load Balancer)
+
+Date/Time: 13 April 2025, 21:18:52
+
+Request: GET / → homepage access
+
+Status code: 200 → OK
+
+Bytes served: 28043
+
+User-Agent: "ELB-HealthChecker/2.0" → This request was made by ALB ka health check, not a human.
+
+Conclusion:
+ALB regular check karta hai ki tumhara EC2 “zinda” hai ya nahi. Agar yeh health check fail ho gaya toh ALB tumhare EC2 ko target group se hata dega.
+
+
+
+
+
+
+
+10.0.10.43 - - [13/Apr/2025:21:18:55 +0000] "GET / HTTP/1.1" 200 28043 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64)... Edg/90.0.818.46" "154.81.156.54"
+
+
+Iska matlab:
+IP: 10.0.10.43 → This might be ALB’s internal IP again
+
+User-Agent: "Mozilla/5.0 ... Edg/90.0.818.46" → This is a real browser (Edge) used by a human
+
+Client IP: "154.81.156.54" → That’s the actual public IP of the person who opened your site
+
+Conclusion:
+Yeh log human ne generate kiya, real browser se, maybe tum ya koi aur.
