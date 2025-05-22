@@ -79,45 +79,37 @@ User data script for Launch template
 
 
 #!/bin/bash
-# Update package lists and install necessary packages
-apt update -y
-apt install -y nginx unzip curl
 
-# Enable and start Nginx
+# Update and install packages
+
+apt update -y
+
+apt install -y nginx unzip
+
+# Start and enable nginx
+
 systemctl enable nginx
+
 systemctl start nginx
 
-# Install AWS CLI (latest version)
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
+# Install AWS CLI
 
-# Remove any existing HTML files in /var/www/html
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+unzip awscliv2.zip
+
+bash ./aws/install
+
+# Clear old web content
+
 rm -rf /var/www/html/*
 
-# Sync website files from S3 bucket
-aws s3 sync s3://my-nginx-content-bucket /var/www/html
+# Sync new content from S3
 
-# Set correct permissions
-chown -R www-data:www-data /var/www/html
-chmod -R 755 /var/www/html
+aws s3 sync s3://my-nginx-content-bucket-2025 /var/www/html/
 
-# Update Nginx configuration
-cat <<EOF > /etc/nginx/sites-available/default
-server {
-    listen 80;
-    server_name _;
+# Restart nginx
 
-    root /var/www/html;
-    index index.html;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOF
-
-# Restart Nginx to apply changes
 systemctl restart nginx
 
 
