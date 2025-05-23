@@ -119,11 +119,8 @@ Purpose of Each Line
 /usr/bin/aws → Full path to AWS CLI (check with which aws)
 
 >> /home/ec2-user/sync.log 2>&1 → Save logs & errors for debuggingPurpose of Each Line
-*/2 * * * * → Run every 2 minutes
 
 /usr/bin/aws → Full path to AWS CLI (check with which aws)
-
->> /home/ec2-user/sync.log 2>&1 → Save logs & errors for debugging
 
 
 cat /home/ec2-user/sync.log
