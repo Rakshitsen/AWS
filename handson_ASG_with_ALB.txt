@@ -122,9 +122,6 @@ Ways to Generate Load on Your EC2 Instances
 1️⃣ Use ab (Apache Benchmark) Tool
 Run this command from any Linux-based system (including another EC2 instance or your local machine with WSL/Mac/Linux):
 
-bash
-Copy
-Edit
 ab -n 10000 -c 100 http://<ALB-DNS-Name>/
 🔹 -n 10000: Total 10,000 requests
 🔹 -c 100: 100 concurrent requests
