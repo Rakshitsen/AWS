@@ -1,0 +1,213 @@
+✳️ Questions 1–10: VPC & Subnet Mastery
+1. Which of the following must be true for a subnet to allow inbound internet traffic?
+
+A. Route to NAT Gateway
+B. Associated with a public route table
+C. Has an Elastic IP
+D. Associated with a security group
+
+2. What is the primary function of a NAT Gateway?
+
+A. Allow internet access to instances in a public subnet
+B. Encrypt traffic between Availability Zones
+C. Allow instances in private subnets to access the internet
+D. Deny inbound access to EC2
+
+3. Which of the following automatically comes with a VPC?
+
+A. NAT Gateway
+B. Public Subnet
+C. Default Route Table
+D. Network ACL with custom rules
+
+4. You have an EC2 instance in a private subnet. You want it to download OS updates. What do you need?
+
+A. Attach an Elastic IP
+B. Assign a public IP
+C. Add a NAT Gateway to the route table
+D. Add a load balancer
+
+5. Which component controls traffic at the instance level?
+
+A. Network ACL
+B. Route Table
+C. Security Group
+D. Subnet Association
+
+6. A VPC has a route table with a route: 0.0.0.0/0 → Internet Gateway, but instances can't connect to the internet. What might be missing?
+
+A. The subnet is private
+B. There's no NAT Gateway
+C. The EC2 instance has no public IP
+D. The VPC is not peered
+
+7. Which CIDR block is valid for a VPC?
+
+A. 172.32.0.0/8
+B. 10.0.0.0/28
+C. 192.168.0.0/16
+D. 256.0.0.0/16
+
+8. You’re launching a two-tier app (web + DB) in a VPC. What’s the best setup?
+
+A. Place both tiers in the same subnet
+B. Use a public subnet for both
+C. Web tier in public, DB in private
+D. Use two public subnets across AZs
+
+9. In a custom VPC with default security groups, what happens when a new EC2 is launched?
+
+A. All inbound and outbound traffic is denied
+B. All traffic is allowed
+C. Inbound is denied, outbound is allowed
+D. Only SSH is allowed
+
+10. You want to allow HTTP (port 80) traffic only from a specific IP. Where do you configure this?
+
+A. NACL outbound rule
+B. Security group inbound rule
+C. IAM role
+D. EC2 metadata service
+
+✳️ Questions 11–20: Load Balancer & CloudWatch
+11. You’ve deployed a stateless app in 2 AZs behind an ALB. Users report intermittent issues. What’s a likely reason?
+
+A. Route table is misconfigured
+B. Security group blocks port 22
+C. Target group health checks are failing in one AZ
+D. IAM role is missing
+
+12. What makes an Application Load Balancer “layer 7”?
+
+A. It can auto-scale EC2s
+B. It routes based on IP
+C. It routes based on HTTP headers, path, host
+D. It encrypts traffic
+
+13. Which AWS service lets you create alarms based on EC2 CPU usage?
+
+A. AWS Config
+B. AWS Inspector
+C. AWS CloudWatch
+D. AWS GuardDuty
+
+14. What’s a custom CloudWatch metric?
+
+A. EC2 memory usage uploaded via script
+B. CPU utilization
+C. NetworkIn
+D. Volume read ops
+
+15. What happens when a CloudWatch Alarm enters ALARM state?
+
+A. AWS automatically shuts down the instance
+B. An action is triggered (SNS, Auto Scaling, etc.)
+C. Logs are deleted
+D. You must manually acknowledge
+
+16. Your app writes logs to a local file. You want to view them in CloudWatch Logs. What must be installed?
+
+A. CloudTrail agent
+B. Systems Manager agent
+C. CloudWatch agent
+D. Trusted Advisor
+
+17. What’s the minimum interval to monitor EC2 CPU with CloudWatch detailed monitoring?
+
+A. 1 hour
+B. 15 minutes
+C. 5 minutes
+D. 1 minute
+
+18. Which metric best shows disk bottlenecks?
+
+A. CPUUtilization
+B. StatusCheckFailed
+C. VolumeQueueLength
+D. NetworkPacketsIn
+
+19. What CloudWatch feature enables real-time logs from Lambda functions?
+
+A. Insights
+B. Metrics
+C. Log Streams
+D. Events
+
+20. CloudWatch Logs retention by default is:
+
+A. 1 day
+B. 7 days
+C. 30 days
+D. Never expires unless configured
+
+✳️ Questions 21–30: Scenario-Based Challenges
+21. You want to ensure a web app runs in 2 AZs with HA and automatic failover. Which combo works best?
+
+A. EC2 in one AZ with auto recovery
+B. Two EC2s in different AZs behind an ALB
+C. EC2s in same AZ, with CloudFront
+D. One EC2 + S3 bucket
+
+22. You have a public subnet but instances can't reach the internet. Route table has IGW. What's missing?
+
+A. EC2 instances are not tagged
+B. EC2 instances lack IAM roles
+C. No Elastic IP or public IP on EC2
+D. No NAT Gateway
+
+23. You want to monitor login activity and API calls. Which service to use?
+
+A. CloudTrail
+B. CloudWatch
+C. Config
+D. Inspector
+
+24. Your billing has spiked. You suspect a misconfigured instance is causing high data transfer. What metric should you check?
+
+A. DiskReadBytes
+B. NetworkOut
+C. CPUUtilization
+D. StatusCheckFailed
+
+25. You want to send logs to CloudWatch Logs from an EC2 that isn't writing to stdout. What’s required?
+
+A. Enable flow logs
+B. Write logs to EBS
+C. Install and configure CloudWatch Logs agent
+D. Launch EC2 in public subnet
+
+26. A web server in a private subnet needs software updates. What’s the cheapest solution?
+
+A. Add public IP
+B. Use NAT Gateway
+C. Use NAT Instance
+D. Use ALB
+
+27. You want to ensure only HTTPS traffic reaches your web app via ELB. What do you do?
+
+A. Use Classic Load Balancer
+B. Add SSL cert to EC2
+C. Configure ALB listener on port 443
+D. Disable EC2 security group
+
+28. You configured everything correctly but EC2 fails health checks behind the ALB. What next?
+
+A. Stop the instance
+B. Check security group for app port
+C. Enable termination protection
+D. Check CloudTrail
+
+29. You want to log all VPC traffic for security review. What should you enable?
+
+A. CloudWatch Logs
+B. CloudTrail
+C. VPC Flow Logs
+D. GuardDuty
+
+30. A company wants to monitor and auto-heal a critical EC2. Which combo works?
+
+A. CloudTrail + GuardDuty
+B. CloudWatch Alarm + Auto Scaling recovery
+C. EC2 backup + snapshot
+D. Route 53 + CloudFront
+
