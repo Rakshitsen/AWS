@@ -1,0 +1,213 @@
+✳️ Questions 1–10: IAM & Shared Responsibility
+1. What’s the recommended first step after creating a new AWS account?
+
+A. Launch an EC2 instance
+B. Create an S3 bucket
+C. Enable MFA on the root user
+D. Create a billing alarm
+
+2. In the AWS shared responsibility model, which is AWS’s responsibility?
+
+A. Encrypting your application data
+B. Managing VPC firewall rules
+C. Patching the underlying hypervisor
+D. Creating IAM roles
+
+3. Which IAM entity cannot be assigned permissions directly?
+
+A. IAM User
+B. IAM Group
+C. IAM Role
+D. IAM Policy
+
+4. Which action is used to assign permissions to a group?
+
+A. Attach a policy to the group
+B. Add users to the group
+C. Enable MFA
+D. Generate an access key
+
+5. What’s the benefit of using IAM roles instead of long-term access keys?
+
+A. Roles are cheaper
+B. Roles are more secure and temporary
+C. Roles allow MFA to be disabled
+D. Roles bypass AWS billing
+
+6. You’ve created a custom IAM policy but it’s not applying. What should you check first?
+
+A. Whether the EC2 instance is stopped
+B. Whether the policy is attached to a user/group
+C. Whether billing alerts are enabled
+D. If the account is in an Organization
+
+7. A user with full S3 permissions still can’t access a bucket. What might be wrong?
+
+A. The bucket is full
+B. S3 is region-locked
+C. A bucket policy is denying access
+D. IAM policies don’t support S3
+
+8. What is a best practice regarding root user access?
+
+A. Use it daily for billing
+B. Share it only with dev team
+C. Lock it and use IAM users instead
+D. Use it for all automation scripts
+
+9. What’s the main use case for an IAM role?
+
+A. Creating users in bulk
+B. Enabling billing alerts
+C. Granting temporary permissions to a service or user
+D. Backing up S3 to Glacier
+
+10. Who is responsible for data classification in the AWS cloud?
+
+A. AWS
+B. The customer
+C. AWS Support
+D. The local government
+
+✳️ Questions 11–20: EC2 + S3 + Pricing
+11. Which EC2 pricing model is best for short-term, non-critical jobs?
+
+A. Reserved
+B. On-Demand
+C. Spot
+D. Dedicated Host
+
+12. What’s required when launching an EC2 instance?
+
+A. Create an S3 bucket
+B. Select a VPC endpoint
+C. Choose an AMI and instance type
+D. Register a domain in Route 53
+
+13. What’s the function of an EC2 security group?
+
+A. Encrypts EBS volumes
+B. Controls network traffic
+C. Stores private keys
+D. Configures AMI images
+
+14. An EC2 instance stops unexpectedly. What should you check first?
+
+A. CPU usage
+B. CloudTrail
+C. Billing alarms or auto stop setting
+D. AWS Support plan
+
+15. Which S3 storage class is best for data accessed once per quarter?
+
+A. S3 Standard
+B. S3 Intelligent-Tiering
+C. S3 Standard-IA
+D. S3 Glacier Deep Archive
+
+16. What makes S3 highly durable?
+
+A. Versioning
+B. Encryption
+C. Replication across multiple AZs
+D. Edge caching
+
+17. What AWS feature helps prevent accidental deletion of S3 objects?
+
+A. IAM Roles
+B. S3 Versioning
+C. Lifecycle policies
+D. Snowball
+
+18. You’re storing backup logs for 7 years, rarely accessed. Cheapest option?
+
+A. S3 Standard
+B. S3 One Zone-IA
+C. Glacier Deep Archive
+D. RDS
+
+19. What EC2 component provides block-level storage?
+
+A. S3
+B. EFS
+C. EBS
+D. CloudFront
+
+20. What’s the default EC2 billing unit?
+
+A. Daily
+B. Monthly
+C. Per second (with 60 sec minimum)
+D. Per GB transferred
+
+✳️ Questions 21–30: Scenario + Mixed AWS
+21. You want to manage multiple AWS accounts under one roof. What should you use?
+
+A. AWS IAM
+B. AWS Control Tower
+C. AWS Organizations
+D. AWS Systems Manager
+
+22. A service in one region can’t reach another region's S3 bucket. What’s wrong?
+
+A. S3 doesn’t support multi-region
+B. Region-level isolation by default
+C. Bucket is encrypted
+D. IAM doesn’t support cross-region
+
+23. You want alerts when EC2 CPU usage is above 80%. Which service to use?
+
+A. CloudTrail
+B. CloudWatch Alarms
+C. GuardDuty
+D. Inspector
+
+24. Which AWS support plan includes a dedicated Technical Account Manager (TAM)?
+
+A. Basic
+B. Developer
+C. Business
+D. Enterprise
+
+25. Your EC2 instance has stopped due to high memory usage. What would help long-term?
+
+A. Add lifecycle rules
+B. Enable S3 versioning
+C. Use Auto Scaling
+D. Enable EC2 backup
+
+26. Which AWS tool helps estimate costs before using services?
+
+A. Cost Explorer
+B. Budgets
+C. Pricing Calculator
+D. TCO Tool
+
+27. You want to block access to an entire AWS region in your account. What should you do?
+
+A. Delete all EC2s
+B. Set up IAM deny policy based on region
+C. Enable CloudTrail
+D. Use Route 53
+
+28. Which is a global service in AWS?
+
+A. EC2
+B. S3
+C. IAM
+D. CloudWatch
+
+29. AWS recommends Multi-AZ deployments primarily for:
+
+A. Cost efficiency
+B. Backup
+C. High Availability
+D. Encryption
+
+30. Which storage type is best for shared access across multiple EC2s?
+
+A. S3
+B. EBS
+C. EFS
+D. Glacier
+
